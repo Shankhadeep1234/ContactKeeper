@@ -6,10 +6,10 @@ const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const onDelete = () => {
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
   };
 
@@ -24,18 +24,18 @@ const ContactItem = ({ contact }) => {
             (type === "professional" ? "badge-success" : "badge-primary")
           }
         >
-          {type.slice(0, 1).toUpperCase() + type.slice(1)}
+          {type.charAt(0).toUpperCase() + type.slice(1)}
         </span>
       </h3>
       <ul className="list">
         {email && (
           <li>
-            <i className="fas fa-envelope-open"></i> {email}
+            <i className="fas fa-envelope-open" /> {email}
           </li>
         )}
         {phone && (
           <li>
-            <i className="fas fa-phone"></i> {phone}
+            <i className="fas fa-phone" /> {phone}
           </li>
         )}
       </ul>
@@ -54,7 +54,7 @@ const ContactItem = ({ contact }) => {
   );
 };
 
-ContactItem.prototype = {
+ContactItem.propTypes = {
   contact: PropTypes.object.isRequired
 };
 
